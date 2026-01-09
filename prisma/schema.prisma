@@ -13,7 +13,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -22,43 +21,68 @@ model User {
   role      Role     @default(USER)
   createdAt DateTime @default(now())
 
-  orders    Order[]
+  orders Order[]
+}
+
+enum StockStatus {
+  inStock
+  lowStock
+  outOfStock
+}
+
+enum Badge {
+  bestSeller
+  new
+  limited
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String      @id @default(uuid())
   name        String
   brand       String
+  category    String      @default("Unknown")
+  imageUrl    String
   description String
   price       Float
-  stock       Int
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
+  notesTop    String
+  notesHeart  String
+  notesBase   String
+  volume      String[]
+  stock       StockStatus @default(inStock)
+  badge       Badge?
+  family      String
 
+   // ⭐ NEW FIELDS
+  originalPrice Float?     // crossed-out price (discounts)
+  rating        Float      @default(0)
+  reviews       Int        @default(0)
+
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
   orderItems  OrderItem[]
 }
 
 model Order {
-  id           String      @id @default(uuid())
-  userId       String
-  totalAmount  Float
-  status       OrderStatus @default(PENDING)
-  createdAt    DateTime    @default(now())
+  id          String      @id @default(uuid())
+  userId      String
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
 
-  user         User        @relation(fields: [userId], references: [id])
-  items        OrderItem[]
-  payment      Payment?
+  user    User        @relation(fields: [userId], references: [id])
+  items   OrderItem[]
+  payment Payment?
 }
 
 model OrderItem {
-  id        String  @id @default(uuid())
-  orderId  String
+  id        String @id @default(uuid())
+  orderId   String
   productId String
-  quantity Int
-  price    Float
+  quantity  Int
+  price     Float
 
-  order    Order   @relation(fields: [orderId], references: [id])
-  product  Product @relation(fields: [productId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model Payment {
@@ -70,7 +94,7 @@ model Payment {
   status        String
   createdAt     DateTime @default(now())
 
-  order         Order    @relation(fields: [orderId], references: [id])
+  order Order @relation(fields: [orderId], references: [id])
 }
 
 enum Role {

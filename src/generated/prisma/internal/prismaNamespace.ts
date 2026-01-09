@@ -833,9 +833,20 @@ export const ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   brand: 'brand',
+  category: 'category',
+  imageUrl: 'imageUrl',
   description: 'description',
   price: 'price',
+  notesTop: 'notesTop',
+  notesHeart: 'notesHeart',
+  notesBase: 'notesBase',
+  volume: 'volume',
   stock: 'stock',
+  badge: 'badge',
+  family: 'family',
+  originalPrice: 'originalPrice',
+  rating: 'rating',
+  reviews: 'reviews',
   isActive: 'isActive',
   createdAt: 'createdAt'
 } as const
@@ -892,6 +903,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -953,6 +972,34 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'StockStatus'
+ */
+export type EnumStockStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StockStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'StockStatus[]'
+ */
+export type ListEnumStockStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StockStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Badge'
+ */
+export type EnumBadgeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Badge'>
+    
+
+
+/**
+ * Reference to a field of type 'Badge[]'
+ */
+export type ListEnumBadgeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Badge[]'>
     
 
 

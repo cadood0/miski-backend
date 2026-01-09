@@ -28,21 +28,35 @@ export type AggregateProduct = {
 
 export type ProductAvgAggregateOutputType = {
   price: number | null
-  stock: number | null
+  originalPrice: number | null
+  rating: number | null
+  reviews: number | null
 }
 
 export type ProductSumAggregateOutputType = {
   price: number | null
-  stock: number | null
+  originalPrice: number | null
+  rating: number | null
+  reviews: number | null
 }
 
 export type ProductMinAggregateOutputType = {
   id: string | null
   name: string | null
   brand: string | null
+  category: string | null
+  imageUrl: string | null
   description: string | null
   price: number | null
-  stock: number | null
+  notesTop: string | null
+  notesHeart: string | null
+  notesBase: string | null
+  stock: $Enums.StockStatus | null
+  badge: $Enums.Badge | null
+  family: string | null
+  originalPrice: number | null
+  rating: number | null
+  reviews: number | null
   isActive: boolean | null
   createdAt: Date | null
 }
@@ -51,9 +65,19 @@ export type ProductMaxAggregateOutputType = {
   id: string | null
   name: string | null
   brand: string | null
+  category: string | null
+  imageUrl: string | null
   description: string | null
   price: number | null
-  stock: number | null
+  notesTop: string | null
+  notesHeart: string | null
+  notesBase: string | null
+  stock: $Enums.StockStatus | null
+  badge: $Enums.Badge | null
+  family: string | null
+  originalPrice: number | null
+  rating: number | null
+  reviews: number | null
   isActive: boolean | null
   createdAt: Date | null
 }
@@ -62,9 +86,20 @@ export type ProductCountAggregateOutputType = {
   id: number
   name: number
   brand: number
+  category: number
+  imageUrl: number
   description: number
   price: number
+  notesTop: number
+  notesHeart: number
+  notesBase: number
+  volume: number
   stock: number
+  badge: number
+  family: number
+  originalPrice: number
+  rating: number
+  reviews: number
   isActive: number
   createdAt: number
   _all: number
@@ -73,21 +108,35 @@ export type ProductCountAggregateOutputType = {
 
 export type ProductAvgAggregateInputType = {
   price?: true
-  stock?: true
+  originalPrice?: true
+  rating?: true
+  reviews?: true
 }
 
 export type ProductSumAggregateInputType = {
   price?: true
-  stock?: true
+  originalPrice?: true
+  rating?: true
+  reviews?: true
 }
 
 export type ProductMinAggregateInputType = {
   id?: true
   name?: true
   brand?: true
+  category?: true
+  imageUrl?: true
   description?: true
   price?: true
+  notesTop?: true
+  notesHeart?: true
+  notesBase?: true
   stock?: true
+  badge?: true
+  family?: true
+  originalPrice?: true
+  rating?: true
+  reviews?: true
   isActive?: true
   createdAt?: true
 }
@@ -96,9 +145,19 @@ export type ProductMaxAggregateInputType = {
   id?: true
   name?: true
   brand?: true
+  category?: true
+  imageUrl?: true
   description?: true
   price?: true
+  notesTop?: true
+  notesHeart?: true
+  notesBase?: true
   stock?: true
+  badge?: true
+  family?: true
+  originalPrice?: true
+  rating?: true
+  reviews?: true
   isActive?: true
   createdAt?: true
 }
@@ -107,9 +166,20 @@ export type ProductCountAggregateInputType = {
   id?: true
   name?: true
   brand?: true
+  category?: true
+  imageUrl?: true
   description?: true
   price?: true
+  notesTop?: true
+  notesHeart?: true
+  notesBase?: true
+  volume?: true
   stock?: true
+  badge?: true
+  family?: true
+  originalPrice?: true
+  rating?: true
+  reviews?: true
   isActive?: true
   createdAt?: true
   _all?: true
@@ -205,9 +275,20 @@ export type ProductGroupByOutputType = {
   id: string
   name: string
   brand: string
+  category: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume: string[]
+  stock: $Enums.StockStatus
+  badge: $Enums.Badge | null
+  family: string
+  originalPrice: number | null
+  rating: number
+  reviews: number
   isActive: boolean
   createdAt: Date
   _count: ProductCountAggregateOutputType | null
@@ -239,9 +320,20 @@ export type ProductWhereInput = {
   id?: Prisma.StringFilter<"Product"> | string
   name?: Prisma.StringFilter<"Product"> | string
   brand?: Prisma.StringFilter<"Product"> | string
+  category?: Prisma.StringFilter<"Product"> | string
+  imageUrl?: Prisma.StringFilter<"Product"> | string
   description?: Prisma.StringFilter<"Product"> | string
   price?: Prisma.FloatFilter<"Product"> | number
-  stock?: Prisma.IntFilter<"Product"> | number
+  notesTop?: Prisma.StringFilter<"Product"> | string
+  notesHeart?: Prisma.StringFilter<"Product"> | string
+  notesBase?: Prisma.StringFilter<"Product"> | string
+  volume?: Prisma.StringNullableListFilter<"Product">
+  stock?: Prisma.EnumStockStatusFilter<"Product"> | $Enums.StockStatus
+  badge?: Prisma.EnumBadgeNullableFilter<"Product"> | $Enums.Badge | null
+  family?: Prisma.StringFilter<"Product"> | string
+  originalPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
+  rating?: Prisma.FloatFilter<"Product"> | number
+  reviews?: Prisma.IntFilter<"Product"> | number
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   orderItems?: Prisma.OrderItemListRelationFilter
@@ -251,9 +343,20 @@ export type ProductOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   brand?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  notesTop?: Prisma.SortOrder
+  notesHeart?: Prisma.SortOrder
+  notesBase?: Prisma.SortOrder
+  volume?: Prisma.SortOrder
   stock?: Prisma.SortOrder
+  badge?: Prisma.SortOrderInput | Prisma.SortOrder
+  family?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   orderItems?: Prisma.OrderItemOrderByRelationAggregateInput
@@ -266,9 +369,20 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   name?: Prisma.StringFilter<"Product"> | string
   brand?: Prisma.StringFilter<"Product"> | string
+  category?: Prisma.StringFilter<"Product"> | string
+  imageUrl?: Prisma.StringFilter<"Product"> | string
   description?: Prisma.StringFilter<"Product"> | string
   price?: Prisma.FloatFilter<"Product"> | number
-  stock?: Prisma.IntFilter<"Product"> | number
+  notesTop?: Prisma.StringFilter<"Product"> | string
+  notesHeart?: Prisma.StringFilter<"Product"> | string
+  notesBase?: Prisma.StringFilter<"Product"> | string
+  volume?: Prisma.StringNullableListFilter<"Product">
+  stock?: Prisma.EnumStockStatusFilter<"Product"> | $Enums.StockStatus
+  badge?: Prisma.EnumBadgeNullableFilter<"Product"> | $Enums.Badge | null
+  family?: Prisma.StringFilter<"Product"> | string
+  originalPrice?: Prisma.FloatNullableFilter<"Product"> | number | null
+  rating?: Prisma.FloatFilter<"Product"> | number
+  reviews?: Prisma.IntFilter<"Product"> | number
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   orderItems?: Prisma.OrderItemListRelationFilter
@@ -278,9 +392,20 @@ export type ProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   brand?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  notesTop?: Prisma.SortOrder
+  notesHeart?: Prisma.SortOrder
+  notesBase?: Prisma.SortOrder
+  volume?: Prisma.SortOrder
   stock?: Prisma.SortOrder
+  badge?: Prisma.SortOrderInput | Prisma.SortOrder
+  family?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrderInput | Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
@@ -297,9 +422,20 @@ export type ProductScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Product"> | string
   name?: Prisma.StringWithAggregatesFilter<"Product"> | string
   brand?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  category?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  imageUrl?: Prisma.StringWithAggregatesFilter<"Product"> | string
   description?: Prisma.StringWithAggregatesFilter<"Product"> | string
   price?: Prisma.FloatWithAggregatesFilter<"Product"> | number
-  stock?: Prisma.IntWithAggregatesFilter<"Product"> | number
+  notesTop?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  notesHeart?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  notesBase?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  volume?: Prisma.StringNullableListFilter<"Product">
+  stock?: Prisma.EnumStockStatusWithAggregatesFilter<"Product"> | $Enums.StockStatus
+  badge?: Prisma.EnumBadgeNullableWithAggregatesFilter<"Product"> | $Enums.Badge | null
+  family?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  originalPrice?: Prisma.FloatNullableWithAggregatesFilter<"Product"> | number | null
+  rating?: Prisma.FloatWithAggregatesFilter<"Product"> | number
+  reviews?: Prisma.IntWithAggregatesFilter<"Product"> | number
   isActive?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
 }
@@ -308,9 +444,20 @@ export type ProductCreateInput = {
   id?: string
   name: string
   brand: string
+  category?: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume?: Prisma.ProductCreatevolumeInput | string[]
+  stock?: $Enums.StockStatus
+  badge?: $Enums.Badge | null
+  family: string
+  originalPrice?: number | null
+  rating?: number
+  reviews?: number
   isActive?: boolean
   createdAt?: Date | string
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
@@ -320,9 +467,20 @@ export type ProductUncheckedCreateInput = {
   id?: string
   name: string
   brand: string
+  category?: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume?: Prisma.ProductCreatevolumeInput | string[]
+  stock?: $Enums.StockStatus
+  badge?: $Enums.Badge | null
+  family: string
+  originalPrice?: number | null
+  rating?: number
+  reviews?: number
   isActive?: boolean
   createdAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
@@ -332,9 +490,20 @@ export type ProductUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
@@ -344,9 +513,20 @@ export type ProductUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
@@ -356,9 +536,20 @@ export type ProductCreateManyInput = {
   id?: string
   name: string
   brand: string
+  category?: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume?: Prisma.ProductCreatevolumeInput | string[]
+  stock?: $Enums.StockStatus
+  badge?: $Enums.Badge | null
+  family: string
+  originalPrice?: number | null
+  rating?: number
+  reviews?: number
   isActive?: boolean
   createdAt?: Date | string
 }
@@ -367,9 +558,20 @@ export type ProductUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -378,36 +580,78 @@ export type ProductUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type ProductCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   brand?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  notesTop?: Prisma.SortOrder
+  notesHeart?: Prisma.SortOrder
+  notesBase?: Prisma.SortOrder
+  volume?: Prisma.SortOrder
   stock?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
+  family?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type ProductAvgOrderByAggregateInput = {
   price?: Prisma.SortOrder
-  stock?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
 }
 
 export type ProductMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   brand?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  notesTop?: Prisma.SortOrder
+  notesHeart?: Prisma.SortOrder
+  notesBase?: Prisma.SortOrder
   stock?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
+  family?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -416,16 +660,28 @@ export type ProductMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   brand?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   description?: Prisma.SortOrder
   price?: Prisma.SortOrder
+  notesTop?: Prisma.SortOrder
+  notesHeart?: Prisma.SortOrder
+  notesBase?: Prisma.SortOrder
   stock?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
+  family?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type ProductSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
-  stock?: Prisma.SortOrder
+  originalPrice?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviews?: Prisma.SortOrder
 }
 
 export type ProductScalarRelationFilter = {
@@ -433,8 +689,33 @@ export type ProductScalarRelationFilter = {
   isNot?: Prisma.ProductWhereInput
 }
 
+export type ProductCreatevolumeInput = {
+  set: string[]
+}
+
 export type FloatFieldUpdateOperationsInput = {
   set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type ProductUpdatevolumeInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type EnumStockStatusFieldUpdateOperationsInput = {
+  set?: $Enums.StockStatus
+}
+
+export type NullableEnumBadgeFieldUpdateOperationsInput = {
+  set?: $Enums.Badge | null
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
@@ -471,9 +752,20 @@ export type ProductCreateWithoutOrderItemsInput = {
   id?: string
   name: string
   brand: string
+  category?: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume?: Prisma.ProductCreatevolumeInput | string[]
+  stock?: $Enums.StockStatus
+  badge?: $Enums.Badge | null
+  family: string
+  originalPrice?: number | null
+  rating?: number
+  reviews?: number
   isActive?: boolean
   createdAt?: Date | string
 }
@@ -482,9 +774,20 @@ export type ProductUncheckedCreateWithoutOrderItemsInput = {
   id?: string
   name: string
   brand: string
+  category?: string
+  imageUrl: string
   description: string
   price: number
-  stock: number
+  notesTop: string
+  notesHeart: string
+  notesBase: string
+  volume?: Prisma.ProductCreatevolumeInput | string[]
+  stock?: $Enums.StockStatus
+  badge?: $Enums.Badge | null
+  family: string
+  originalPrice?: number | null
+  rating?: number
+  reviews?: number
   isActive?: boolean
   createdAt?: Date | string
 }
@@ -509,9 +812,20 @@ export type ProductUpdateWithoutOrderItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -520,9 +834,20 @@ export type ProductUncheckedUpdateWithoutOrderItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   brand?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   price?: Prisma.FloatFieldUpdateOperationsInput | number
-  stock?: Prisma.IntFieldUpdateOperationsInput | number
+  notesTop?: Prisma.StringFieldUpdateOperationsInput | string
+  notesHeart?: Prisma.StringFieldUpdateOperationsInput | string
+  notesBase?: Prisma.StringFieldUpdateOperationsInput | string
+  volume?: Prisma.ProductUpdatevolumeInput | string[]
+  stock?: Prisma.EnumStockStatusFieldUpdateOperationsInput | $Enums.StockStatus
+  badge?: Prisma.NullableEnumBadgeFieldUpdateOperationsInput | $Enums.Badge | null
+  family?: Prisma.StringFieldUpdateOperationsInput | string
+  originalPrice?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviews?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -562,9 +887,20 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   brand?: boolean
+  category?: boolean
+  imageUrl?: boolean
   description?: boolean
   price?: boolean
+  notesTop?: boolean
+  notesHeart?: boolean
+  notesBase?: boolean
+  volume?: boolean
   stock?: boolean
+  badge?: boolean
+  family?: boolean
+  originalPrice?: boolean
+  rating?: boolean
+  reviews?: boolean
   isActive?: boolean
   createdAt?: boolean
   orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
@@ -575,9 +911,20 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   brand?: boolean
+  category?: boolean
+  imageUrl?: boolean
   description?: boolean
   price?: boolean
+  notesTop?: boolean
+  notesHeart?: boolean
+  notesBase?: boolean
+  volume?: boolean
   stock?: boolean
+  badge?: boolean
+  family?: boolean
+  originalPrice?: boolean
+  rating?: boolean
+  reviews?: boolean
   isActive?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -586,9 +933,20 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   name?: boolean
   brand?: boolean
+  category?: boolean
+  imageUrl?: boolean
   description?: boolean
   price?: boolean
+  notesTop?: boolean
+  notesHeart?: boolean
+  notesBase?: boolean
+  volume?: boolean
   stock?: boolean
+  badge?: boolean
+  family?: boolean
+  originalPrice?: boolean
+  rating?: boolean
+  reviews?: boolean
   isActive?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -597,14 +955,25 @@ export type ProductSelectScalar = {
   id?: boolean
   name?: boolean
   brand?: boolean
+  category?: boolean
+  imageUrl?: boolean
   description?: boolean
   price?: boolean
+  notesTop?: boolean
+  notesHeart?: boolean
+  notesBase?: boolean
+  volume?: boolean
   stock?: boolean
+  badge?: boolean
+  family?: boolean
+  originalPrice?: boolean
+  rating?: boolean
+  reviews?: boolean
   isActive?: boolean
   createdAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "brand" | "description" | "price" | "stock" | "isActive" | "createdAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "brand" | "category" | "imageUrl" | "description" | "price" | "notesTop" | "notesHeart" | "notesBase" | "volume" | "stock" | "badge" | "family" | "originalPrice" | "rating" | "reviews" | "isActive" | "createdAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -621,9 +990,20 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     name: string
     brand: string
+    category: string
+    imageUrl: string
     description: string
     price: number
-    stock: number
+    notesTop: string
+    notesHeart: string
+    notesBase: string
+    volume: string[]
+    stock: $Enums.StockStatus
+    badge: $Enums.Badge | null
+    family: string
+    originalPrice: number | null
+    rating: number
+    reviews: number
     isActive: boolean
     createdAt: Date
   }, ExtArgs["result"]["product"]>
@@ -1053,9 +1433,20 @@ export interface ProductFieldRefs {
   readonly id: Prisma.FieldRef<"Product", 'String'>
   readonly name: Prisma.FieldRef<"Product", 'String'>
   readonly brand: Prisma.FieldRef<"Product", 'String'>
+  readonly category: Prisma.FieldRef<"Product", 'String'>
+  readonly imageUrl: Prisma.FieldRef<"Product", 'String'>
   readonly description: Prisma.FieldRef<"Product", 'String'>
   readonly price: Prisma.FieldRef<"Product", 'Float'>
-  readonly stock: Prisma.FieldRef<"Product", 'Int'>
+  readonly notesTop: Prisma.FieldRef<"Product", 'String'>
+  readonly notesHeart: Prisma.FieldRef<"Product", 'String'>
+  readonly notesBase: Prisma.FieldRef<"Product", 'String'>
+  readonly volume: Prisma.FieldRef<"Product", 'String[]'>
+  readonly stock: Prisma.FieldRef<"Product", 'StockStatus'>
+  readonly badge: Prisma.FieldRef<"Product", 'Badge'>
+  readonly family: Prisma.FieldRef<"Product", 'String'>
+  readonly originalPrice: Prisma.FieldRef<"Product", 'Float'>
+  readonly rating: Prisma.FieldRef<"Product", 'Float'>
+  readonly reviews: Prisma.FieldRef<"Product", 'Int'>
   readonly isActive: Prisma.FieldRef<"Product", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
 }

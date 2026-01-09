@@ -1,21 +1,15 @@
 import { Router } from "express";
-import {
-  create,
-  getAll,
-  getOne,
-  update,
-  remove,
-} from "./product.controller";
+import { create, getAll, getOne, update, remove } from "./product.controller";
 import { protect } from "../../middlewares/auth.middleware";
 import { isAdmin } from "../../middlewares/admin.middleware";
 
 const router = Router();
 
-// Public
+// PUBLIC (shop frontend)
 router.get("/", getAll);
 router.get("/:id", getOne);
 
-// Admin only
+// ADMIN ONLY (dashboard)
 router.post("/", protect, isAdmin, create);
 router.put("/:id", protect, isAdmin, update);
 router.delete("/:id", protect, isAdmin, remove);

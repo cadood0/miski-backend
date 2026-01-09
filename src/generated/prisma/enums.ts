@@ -9,6 +9,24 @@
 * 🟢 You can import this file directly.
 */
 
+export const StockStatus = {
+  inStock: 'inStock',
+  lowStock: 'lowStock',
+  outOfStock: 'outOfStock'
+} as const
+
+export type StockStatus = (typeof StockStatus)[keyof typeof StockStatus]
+
+
+export const Badge = {
+  bestSeller: 'bestSeller',
+  new: 'new',
+  limited: 'limited'
+} as const
+
+export type Badge = (typeof Badge)[keyof typeof Badge]
+
+
 export const Role = {
   USER: 'USER',
   ADMIN: 'ADMIN'

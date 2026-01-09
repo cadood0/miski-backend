@@ -1,40 +1,24 @@
+// src/products/product.service.ts
 import prisma from "../../config/prisma";
+import { Prisma } from "../../generated/prisma/client";
 
-export const createProduct = async (data: {
-  name: string;
-  brand: string;
-  description: string;
-  price: number;
-  stock: number;
-}) => {
-  return prisma.product.create({
-    data,
-  });
+export const createProduct = async (
+  data: Prisma.ProductUncheckedCreateInput
+) => {
+  return prisma.product.create({ data });
 };
 
 export const getAllProducts = async () => {
-  return prisma.product.findMany({
-    where: { isActive: true },
-    orderBy: { createdAt: "desc" },
-  });
+  return prisma.product.findMany();
 };
 
 export const getProductById = async (id: string) => {
-  return prisma.product.findUnique({
-    where: { id },
-  });
+  return prisma.product.findUnique({ where: { id } });
 };
 
 export const updateProduct = async (
   id: string,
-  data: Partial<{
-    name: string;
-    brand: string;
-    description: string;
-    price: number;
-    stock: number;
-    isActive: boolean;
-  }>
+  data: Prisma.ProductUncheckedUpdateInput
 ) => {
   return prisma.product.update({
     where: { id },
@@ -43,8 +27,5 @@ export const updateProduct = async (
 };
 
 export const deleteProduct = async (id: string) => {
-  // Soft delete
-  return prisma.product.delete({
-    where: { id },
-  });
+  return prisma.product.delete({ where: { id } });
 };

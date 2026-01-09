@@ -90,9 +90,20 @@ export const ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   brand: 'brand',
+  category: 'category',
+  imageUrl: 'imageUrl',
   description: 'description',
   price: 'price',
+  notesTop: 'notesTop',
+  notesHeart: 'notesHeart',
+  notesBase: 'notesBase',
+  volume: 'volume',
   stock: 'stock',
+  badge: 'badge',
+  family: 'family',
+  originalPrice: 'originalPrice',
+  rating: 'rating',
+  reviews: 'reviews',
   isActive: 'isActive',
   createdAt: 'createdAt'
 } as const
@@ -149,4 +160,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

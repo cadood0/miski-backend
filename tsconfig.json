@@ -43,5 +43,5 @@
     "skipLibCheck": true,
   },
   // Only include source files under src to avoid picking up files like prisma.config.ts
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "generated/prisma"]
 }

@@ -1,5 +1,5 @@
 import prisma from "../../config/prisma";
-import { OrderStatus } from "../../generated/prisma/client";
+import { OrderStatus,StockStatus  } from "../../generated/prisma/client";
 
 export const createOrder = async (userId: string, items: { productId: string, quantity: number }[]) => {
   if (items.length === 0) throw new Error("Cart is empty");
@@ -11,7 +11,7 @@ export const createOrder = async (userId: string, items: { productId: string, qu
   for (const item of items) {
     const product = await prisma.product.findUnique({ where: { id: item.productId } });
     if (!product || !product.isActive) throw new Error(`Product ${item.productId} not available`);
-    if (product.stock < item.quantity) throw new Error(`Not enough stock for ${product.name}`);
+    if (product.stock === "outOfStock") throw new Error(`Not enough stock for ${product.name}`);
 
     totalAmount += product.price * item.quantity;
 
@@ -31,15 +31,30 @@ export const createOrder = async (userId: string, items: { productId: string, qu
     include: { items: true },
   });
 
-  // Decrease stock
+ // Update stock (enum logic only)
   for (const item of items) {
+    const product = await prisma.product.findUnique({
+      where: { id: item.productId },
+    });
+
+    if (!product) continue;
+
+    let newStock: StockStatus = product.stock;
+
+    // Simple enum “decrement logic”
+    if (product.stock === "inStock" && item.quantity > 0) {
+      newStock = "lowStock"; // example: assume any purchase drops it to lowStock
+    } else if (product.stock === "lowStock") {
+      newStock = "outOfStock"; // example: lowStock → outOfStock
+    }
+
     await prisma.product.update({
       where: { id: item.productId },
-      data: { stock: { decrement: item.quantity } },
+      data: { stock: newStock },
     });
-  }
 
   return order;
+};
 };
 
 export const getUserOrders = async (userId: string) => {
