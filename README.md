@@ -104,7 +104,6 @@ Register and login responses include the full user record (including the passwor
 | Method | Path | Auth | Description |
 | --- | --- | --- | --- |
 | `GET` | `/` | Public | Health check |
-| `GET` | `/db-test` | Public | Returns every user row. Development helper only. |
 
 ### Auth — `/api/auth`
 
